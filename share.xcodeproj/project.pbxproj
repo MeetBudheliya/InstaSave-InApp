@@ -9,10 +9,6 @@
 /* Begin PBXBuildFile section */
 		BD226C4328360EBC00EA92B3 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD226C4228360EBC00EA92B3 /* SplashViewController.swift */; };
 		BD226C48283628A600EA92B3 /* Splash.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BD226C47283628A600EA92B3 /* Splash.mp4 */; };
-		BD50B57B2834E85200BC4779 /* SaveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD50B5792834E85200BC4779 /* SaveService.swift */; };
-		BD50B57F2834E86600BC4779 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD50B57D2834E86600BC4779 /* User.swift */; };
-		BD50B5802834E86600BC4779 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD50B57E2834E86600BC4779 /* Post.swift */; };
-		BD50B5822834E8C300BC4779 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD50B5812834E8C200BC4779 /* Helper.swift */; };
 		BD676127283369B3005AA41B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD676126283369B3005AA41B /* AppDelegate.swift */; };
 		BD676129283369B3005AA41B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD676128283369B3005AA41B /* SceneDelegate.swift */; };
 		BD67612B283369B3005AA41B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD67612A283369B3005AA41B /* ViewController.swift */; };
@@ -24,6 +20,8 @@
 		BD676148283369C9005AA41B /* shareEx.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BD67613E283369C9005AA41B /* shareEx.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BD9710E628378DC6004B82DD /* ItemsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9710E428378DC5004B82DD /* ItemsCollectionViewCell.swift */; };
 		BD9710E728378DC6004B82DD /* ItemsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD9710E528378DC5004B82DD /* ItemsCollectionViewCell.xib */; };
+		BD9A95FE283CA42F00020825 /* SaveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A95FD283CA42F00020825 /* SaveService.swift */; };
+		BD9A9600283CA45000020825 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A95FF283CA45000020825 /* Helper.swift */; };
 		BDEC1492283666DC006AE511 /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEC1491283666DC006AE511 /* SavedViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,10 +52,6 @@
 /* Begin PBXFileReference section */
 		BD226C4228360EBC00EA92B3 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		BD226C47283628A600EA92B3 /* Splash.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Splash.mp4; path = ../../../../Downloads/Splash.mp4; sourceTree = "<group>"; };
-		BD50B5792834E85200BC4779 /* SaveService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveService.swift; sourceTree = "<group>"; };
-		BD50B57D2834E86600BC4779 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		BD50B57E2834E86600BC4779 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		BD50B5812834E8C200BC4779 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		BD676123283369B3005AA41B /* share.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = share.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD676126283369B3005AA41B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD676128283369B3005AA41B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +68,8 @@
 		BD67614E2833740A005AA41B /* shareEx.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = shareEx.entitlements; sourceTree = "<group>"; };
 		BD9710E428378DC5004B82DD /* ItemsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsCollectionViewCell.swift; sourceTree = "<group>"; };
 		BD9710E528378DC5004B82DD /* ItemsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemsCollectionViewCell.xib; sourceTree = "<group>"; };
+		BD9A95FD283CA42F00020825 /* SaveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveService.swift; sourceTree = "<group>"; };
+		BD9A95FF283CA45000020825 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		BDEC1491283666DC006AE511 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,10 +104,8 @@
 		BD50B57C2834E85600BC4779 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				BD50B57E2834E86600BC4779 /* Post.swift */,
-				BD50B57D2834E86600BC4779 /* User.swift */,
-				BD50B5792834E85200BC4779 /* SaveService.swift */,
-				BD50B5812834E8C200BC4779 /* Helper.swift */,
+				BD9A95FD283CA42F00020825 /* SaveService.swift */,
+				BD9A95FF283CA45000020825 /* Helper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -277,14 +271,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD67612B283369B3005AA41B /* ViewController.swift in Sources */,
-				BD50B57F2834E86600BC4779 /* User.swift in Sources */,
-				BD50B57B2834E85200BC4779 /* SaveService.swift in Sources */,
+				BD9A95FE283CA42F00020825 /* SaveService.swift in Sources */,
 				BD9710E628378DC6004B82DD /* ItemsCollectionViewCell.swift in Sources */,
 				BDEC1492283666DC006AE511 /* SavedViewController.swift in Sources */,
 				BD676127283369B3005AA41B /* AppDelegate.swift in Sources */,
-				BD50B5802834E86600BC4779 /* Post.swift in Sources */,
+				BD9A9600283CA45000020825 /* Helper.swift in Sources */,
 				BD676129283369B3005AA41B /* SceneDelegate.swift in Sources */,
-				BD50B5822834E8C300BC4779 /* Helper.swift in Sources */,
 				BD226C4328360EBC00EA92B3 /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

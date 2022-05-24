@@ -1,10 +1,10 @@
 //
 //  Helper.swift
-//  InstaSave
+//  share
 //
-//  Created by Vladyslav Yakovlev on 3/1/19.
-//  Copyright © 2019 Vladyslav Yakovlev. All rights reserved.
+//  Created by Meet's MAC on 24/05/22.
 //
+
 
 import UIKit
 import AVFoundation
@@ -16,11 +16,11 @@ let screenHeight = UIScreen.main.bounds.height
 
 //MARK: - UIColor
 extension UIColor {
-    
+
     convenience init(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat = 1) {
         self.init(red: r/255, green: g/255, blue: b/255, alpha: a)
     }
-    
+
     convenience init(hex: String, alpha: CGFloat = 1) {
         self.init(r: CGFloat((Int(hex, radix: 16)! >> 16) & 0xFF), g: CGFloat((Int(hex, radix: 16)! >> 8) & 0xFF), b: CGFloat((Int(hex, radix: 16)!) & 0xFF), a: alpha)
     }
@@ -28,7 +28,7 @@ extension UIColor {
 
 //MARK: - URLSession
 extension URLSession {
-    
+
     class func getImage(url: URL, completion: @escaping (UIImage?) -> ()) {
         shared.dataTask(with: url) { data, response, error in
             DispatchQueue.main.async {
@@ -51,7 +51,7 @@ extension Bundle {
 
 //MARK: - String
 extension String {
-    
+
     var url: URL? {
         return URL(string: self)
     }
@@ -59,7 +59,7 @@ extension String {
 
 //MARK: - UIViewController
 extension UIViewController{
-    
+
     func makeThumbFromVideo(_ url:URL) -> UIImage {
         let asset = AVURLAsset(url: url)
         let imgGenerator = AVAssetImageGenerator(asset: asset)
@@ -68,7 +68,7 @@ extension UIViewController{
         }
         return UIImage(cgImage: cgImage)
     }
-    
+
     func makeThumbFromImage(_ url:URL) -> UIImage {
         do{
             let imgData = try Data(contentsOf: url)
@@ -77,9 +77,9 @@ extension UIViewController{
             return UIImage(named: "download")!
         }
     }
-    
+
     func alert(msg:String){
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now()+1) {
             self.presentedViewController?.dismiss(animated: true, completion: nil)
             let alert = UIAlertController(title: "Insta Save", message: msg, preferredStyle: .alert)
@@ -90,7 +90,7 @@ extension UIViewController{
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
+
     func loader() -> UIAlertController {
         let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
         DispatchQueue.main.async {
@@ -103,16 +103,16 @@ extension UIViewController{
         }
         return alert
     }
-    
+
     func stopLoader(loader : UIAlertController) {
         DispatchQueue.main.async {
             loader.dismiss(animated: true, completion: nil)
         }
     }
-    
-    
+
+
     func displayToastMessage(_ message : String) {
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now()) {
             let toastView = UILabel()
             toastView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
@@ -125,25 +125,25 @@ extension UIViewController{
             toastView.numberOfLines = 0
             toastView.alpha = 0
             toastView.translatesAutoresizingMaskIntoConstraints = false
-            
+
             guard let window = UIApplication.shared.mainKeyWindow else {
                 return
             }
             window.addSubview(toastView)
-            
+
             let horizontalCenterContraint: NSLayoutConstraint = NSLayoutConstraint(item: toastView, attribute: .centerX, relatedBy: .equal, toItem: window, attribute: .centerX, multiplier: 1, constant: 0)
-            
+
             let widthContraint: NSLayoutConstraint = NSLayoutConstraint(item: toastView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 275)
-            
+
             let verticalContraint: [NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(>=200)-[loginView(==30)]-68-|", options: [.alignAllCenterX, .alignAllCenterY], metrics: nil, views: ["loginView": toastView])
-            
+
             NSLayoutConstraint.activate([horizontalCenterContraint, widthContraint])
             NSLayoutConstraint.activate(verticalContraint)
-            
+
             UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: {
                 toastView.alpha = 1
             }, completion: nil)
-            
+
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double((Int64)(2 * NSEC_PER_SEC)) / Double(NSEC_PER_SEC), execute: {
                 UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: {
                     toastView.alpha = 0
@@ -153,8 +153,8 @@ extension UIViewController{
             })
         }
     }
-    
-    
+
+
 }
 
 //MARK: - URL
@@ -167,11 +167,52 @@ extension URL{
             return UIImage()
         }
     }
+
+    /// The time at which the resource was created.
+    /// This key corresponds to an Date value, or nil if the volume doesn't support creation dates.
+    /// A resource’s creationDateKey value should be less than or equal to the resource’s contentModificationDateKey and contentAccessDateKey values. Otherwise, the file system may change the creationDateKey to the lesser of those values.
+    var creation: Date? {
+        get {
+            return (try? resourceValues(forKeys: [.creationDateKey]))?.creationDate
+        }
+        set {
+            var resourceValues = URLResourceValues()
+            resourceValues.creationDate = newValue
+            try? setResourceValues(resourceValues)
+        }
+    }
+    /// The time at which the resource was most recently modified.
+    /// This key corresponds to an Date value, or nil if the volume doesn't support modification dates.
+    var contentModification: Date? {
+        get {
+            return (try? resourceValues(forKeys: [.contentModificationDateKey]))?.contentModificationDate
+        }
+        set {
+            var resourceValues = URLResourceValues()
+            resourceValues.contentModificationDate = newValue
+            try? setResourceValues(resourceValues)
+        }
+    }
+    /// The time at which the resource was most recently accessed.
+    /// This key corresponds to an Date value, or nil if the volume doesn't support access dates.
+    ///  When you set the contentAccessDateKey for a resource, also set contentModificationDateKey in the same call to the setResourceValues(_:) method. Otherwise, the file system may set the contentAccessDateKey value to the current contentModificationDateKey value.
+    var contentAccess: Date? {
+        get {
+            return (try? resourceValues(forKeys: [.contentAccessDateKey]))?.contentAccessDate
+        }
+        // Beginning in macOS 10.13, iOS 11, watchOS 4, tvOS 11, and later, contentAccessDateKey is read-write. Attempts to set a value for this file resource property on earlier systems are ignored.
+        set {
+            var resourceValues = URLResourceValues()
+            resourceValues.contentAccessDate = newValue
+            try? setResourceValues(resourceValues)
+        }
+    }
+
 }
 
 //MARK: - UIApplication
 extension UIApplication {
-    
+
     public var mainKeyWindow: UIWindow? {
         if #available(iOS 13, *) {
             return UIApplication.shared.connectedScenes

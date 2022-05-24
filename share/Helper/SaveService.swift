@@ -1,20 +1,19 @@
 //
 //  SaveService.swift
-//  InstaSave
+//  share
 //
-//  Created by Vladyslav Yakovlev on 3/1/19.
-//  Copyright © 2019 Vladyslav Yakovlev. All rights reserved.
+//  Created by Meet's MAC on 24/05/22.
 //
+
 
 import Photos
 import UIKit
-
 extension SaveService {
-    
+
     enum Error: LocalizedError {
-        
+
         case accessDenied
-        
+
         case unknown
     }
 }
@@ -22,28 +21,7 @@ extension SaveService {
 final class SaveService {
 
     static var shared = SaveService()
-    
-//    static func saveImage(_ image: UIImage, completion: @escaping (Error?) -> ()) {
-//        PHPhotoLibrary.requestAuthorization { status in
-//            guard status == .authorized else {
-//                return DispatchQueue.main.async {
-//                    completion(.accessDenied)
-//                }
-//            }
-//            PHPhotoLibrary.shared().performChanges({
-//                PHAssetChangeRequest.creationRequestForAsset(from: image)
-//            }) { saved, error in
-//                DispatchQueue.main.async {
-//                    if saved, error == nil {
-//                        completion(nil)
-//                    } else {
-//                        completion(.unknown)
-//                    }
-//                }
-//            }
-//        }
-//    }
-    
+
     static func saveContent(type:String, _ pathExtension:String, _ remoteUrl: URL, completion: @escaping (Error?) -> ()) {
         download(type:type, pathExtension:pathExtension, with: remoteUrl) { Url in
             guard Url != nil else {
@@ -52,15 +30,6 @@ final class SaveService {
                 }
             }
             completion(nil)
-//            var list = self.shared.load(type: type) ?? []
-//            list.append(Url)
-//            self.shared.save(type:type, urls: list, completion: { error in
-//                completion(error)
-//            })
-
-//            writeVideoToLibrary(videoUrl) { error in
-//                completion(error)
-//            }
         }
     }
 
@@ -86,53 +55,16 @@ final class SaveService {
     }
 
     func load(type:String) -> [URL]? {
-//        let fullPath = getApplicationDirectory().appendingPathComponent(type).appendingPathComponent("\(Bundle.main.displayName ?? "Apps")_secure_file")
-//        if let nsData = NSData(contentsOf: fullPath) {
-//            do {
-//
-//                let data = Data(referencing:nsData)
-//
-//                if let loadedMeals = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Array<URL> {
-//                    return loadedMeals
-//                }
-//            } catch {
-//                print("Couldn't read file.")
-//                return nil
-//            }
-//        }
-//        return nil
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(type)
         do {
             let fileURLs = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
-            return fileURLs
+            return fileURLs.sorted(by: {$0.creation ?? Date() > $1.creation ?? Date()})
         } catch {
             print("Error while enumerating files \(documentsURL.path): \(error.localizedDescription)")
             return nil
         }
     }
-//
-//    private static func writeVideoToLibrary(_ videoUrl: URL, completion: @escaping (Error?) -> ()) {
-//        PHPhotoLibrary.requestAuthorization { status in
-//            guard status == .authorized else {
-//                return DispatchQueue.main.async {
-//                    completion(.accessDenied)
-//                }
-//            }
-//            PHPhotoLibrary.shared().performChanges({
-//                PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: videoUrl)
-//            }) { saved, error in
-//                try? FileManager.default.removeItem(at: videoUrl)
-//                DispatchQueue.main.async {
-//                    if saved, error == nil {
-//                        completion(nil)
-//                    } else {
-//                        completion(.unknown)
-//                    }
-//                }
-//            }
-//        }
-//    }
 
     private static func download(type:String, pathExtension:String, with url: URL, completion: @escaping (URL?) -> ()) {
         DispatchQueue.main.async {
@@ -147,10 +79,9 @@ final class SaveService {
                 let DirPath = applicationUrl.appendingPathComponent(type)
                 do
                 {
-    //                let fileAttr = [FileAttributeKey.protectionKey : FileProtectionType.complete]
                     try FileManager.default.createDirectory(atPath: DirPath.path, withIntermediateDirectories: true, attributes: nil)
                     print("Dir Path = \(DirPath)")
-                    //
+
                     let FileUrl = DirPath.appendingPathComponent("\(self.shared.currentDateTime()).\(pathExtension)")
                     if fileManager.fileExists(atPath: FileUrl.path) {
                         try? fileManager.removeItem(at: FileUrl)

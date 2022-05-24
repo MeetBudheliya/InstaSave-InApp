@@ -32,20 +32,25 @@ class ViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-//                self.sharedURL = UserDefaults(suiteName: suiteName)?.url(forKey: keyName)
-//                print("Shared URL Found : " + (self.sharedURL?.absoluteString ?? "Nil"))
-        
+
+
         self.title = Bundle.main.displayName
         loader = self.loader()
-        
+
         self.overlayview.isHidden = true
         self.web.navigationDelegate = self
         self.textFieldPase.delegate = self
-        
-        
-        let paste = UIPasteboard.general.string ?? ""
-        self.sharedURL = URL(string: paste)
+
+
+        if let url = UserDefaults(suiteName: suiteName)?.url(forKey: keyName){
+            self.sharedURL = url
+            print("Shared URL Found : " + (self.sharedURL?.absoluteString ?? "Nil"))
+
+        }else{
+            let paste = UIPasteboard.general.string ?? ""
+            self.sharedURL = URL(string: paste)
+        }
+
         self.web.load(URLRequest(url: self.sharedURL ?? URL(string: "https://i.pinimg.com/564x/49/e5/8d/49e58d5922019b8ec4642a2e2b9291c2.jpg")!))
         
     }
@@ -106,13 +111,14 @@ extension ViewController: WKNavigationDelegate{
         print("WebView content loaded.")
         
         //        self.web.load(URLRequest(url: URL(string: "www.instagram.com")!))
-        guard let activeLink = self.checkLink(UIPasteboard.general.string ?? "") else {
+        guard let activeLink = self.checkLink(self.sharedURL?.absoluteString ?? "") else {
             self.stopLoader(loader: self.loader)
             self.displayToastMessage("Invalid Link")
             return
         }
-        self.textFieldPase.text = UIPasteboard.general.string ?? ""
+        self.textFieldPase.text = self.sharedURL?.absoluteString
         self.getMediaPost(with: activeLink)
+        UserDefaults(suiteName: suiteName)?.set(nil, forKey: keyName)
     }
 }
 
