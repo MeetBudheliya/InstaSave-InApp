@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		BD226C4328360EBC00EA92B3 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD226C4228360EBC00EA92B3 /* SplashViewController.swift */; };
-		BD226C48283628A600EA92B3 /* Splash.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BD226C47283628A600EA92B3 /* Splash.mp4 */; };
+		BD42367128A3B2D20078E86A /* Splash.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BD42367028A3B2D20078E86A /* Splash.mp4 */; };
+		BD42367328A3D3E30078E86A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD42367228A3D3E30078E86A /* Helper.swift */; };
+		BD42367528A3D5830078E86A /* SaveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD42367428A3D5830078E86A /* SaveService.swift */; };
 		BD676127283369B3005AA41B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD676126283369B3005AA41B /* AppDelegate.swift */; };
 		BD676129283369B3005AA41B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD676128283369B3005AA41B /* SceneDelegate.swift */; };
 		BD67612B283369B3005AA41B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD67612A283369B3005AA41B /* ViewController.swift */; };
@@ -51,7 +53,9 @@
 
 /* Begin PBXFileReference section */
 		BD226C4228360EBC00EA92B3 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		BD226C47283628A600EA92B3 /* Splash.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Splash.mp4; path = ../../../../Downloads/Splash.mp4; sourceTree = "<group>"; };
+		BD42367028A3B2D20078E86A /* Splash.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Splash.mp4; sourceTree = "<group>"; };
+		BD42367228A3D3E30078E86A /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		BD42367428A3D5830078E86A /* SaveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveService.swift; sourceTree = "<group>"; };
 		BD676123283369B3005AA41B /* share.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = share.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD676126283369B3005AA41B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD676128283369B3005AA41B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,8 +142,8 @@
 				BD50B57C2834E85600BC4779 /* Helper */,
 				BD9710E828378DCC004B82DD /* View */,
 				BD67612C283369B3005AA41B /* Main.storyboard */,
+				BD42367028A3B2D20078E86A /* Splash.mp4 */,
 				BD67612F283369B5005AA41B /* Assets.xcassets */,
-				BD226C47283628A600EA92B3 /* Splash.mp4 */,
 				BD676131283369B5005AA41B /* LaunchScreen.storyboard */,
 				BD676134283369B5005AA41B /* Info.plist */,
 			);
@@ -153,6 +157,8 @@
 				BD676140283369C9005AA41B /* ShareViewController.swift */,
 				BD676142283369C9005AA41B /* MainInterface.storyboard */,
 				BD676145283369C9005AA41B /* Info.plist */,
+				BD42367228A3D3E30078E86A /* Helper.swift */,
+				BD42367428A3D5830078E86A /* SaveService.swift */,
 			);
 			path = shareEx;
 			sourceTree = "<group>";
@@ -249,7 +255,7 @@
 			files = (
 				BD676133283369B5005AA41B /* LaunchScreen.storyboard in Resources */,
 				BD676130283369B5005AA41B /* Assets.xcassets in Resources */,
-				BD226C48283628A600EA92B3 /* Splash.mp4 in Resources */,
+				BD42367128A3B2D20078E86A /* Splash.mp4 in Resources */,
 				BD67612E283369B3005AA41B /* Main.storyboard in Resources */,
 				BD9710E728378DC6004B82DD /* ItemsCollectionViewCell.xib in Resources */,
 			);
@@ -285,7 +291,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD42367528A3D5830078E86A /* SaveService.swift in Sources */,
 				BD676141283369C9005AA41B /* ShareViewController.swift in Sources */,
+				BD42367328A3D3E30078E86A /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,7 +466,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = InstaSave;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access to save videos";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = Main;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -492,7 +500,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = InstaSave;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access to save videos";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = Main;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

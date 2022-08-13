@@ -154,19 +154,23 @@ extension ViewController{
     }
     
     func getJson(_ link: String, completion: @escaping (Json?) -> ()) {
-        let url = URL(string: "\(link)?__a=1")!
+        let url = URL(string: "\(link)?__a=1&__d=dis")!
         
-        web.configuration.websiteDataStore.httpCookieStore.getAllCookies({ cookies in
-            var c = [HTTPCookie]()
-            for cookie in cookies {
-                //...
-                print(cookie)
-                c.append(cookie)
-            }
+//        web.configuration.websiteDataStore.httpCookieStore.getAllCookies({ cookies in
+//            var c = [HTTPCookie]()
+//            for cookie in cookies {
+//                //...
+//                print(cookie)
+//                c.append(cookie)
+//            }
             // First
             let jar = HTTPCookieStorage.shared
-            jar.setCookies(c, for: url, mainDocumentURL: url)
-            
+//            jar.setCookies(c, for: url, mainDocumentURL: url)
+
+            let cookieHeaderField = ["Set-Cookie": "sessionid=49799874841%3AVxKvOvPMexitk5%3A2%3AAYde0CJ6uWZAkNvpzIcrSSWbVvN3CyG31t03hH7big"] // Or ["Set-Cookie": "key=value, key2=value2"] for multiple cookies
+            let cookies = HTTPCookie.cookies(withResponseHeaderFields: cookieHeaderField, for: url)
+            jar.setCookies(cookies, for: url, mainDocumentURL: url)
+
             // Then
             let request = URLRequest(url: url)
             URLSession.shared.dataTask(with: request){ data, response, error in
@@ -204,7 +208,7 @@ extension ViewController{
                     completion(nil)
                 }
             }.resume()
-        })
+//        })
         
     }
 
